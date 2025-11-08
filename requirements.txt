@@ -3,6 +3,7 @@ langchain-community
 langchain-ollama
 langchain-groq
 langchain-openai
+langchain-text-splitters
 chainlit
 faiss-cpu
 pypdf
