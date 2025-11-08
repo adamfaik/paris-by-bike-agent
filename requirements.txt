@@ -4,9 +4,10 @@ langchain-ollama
 langchain-groq
 langchain-openai
 langchain-text-splitters
+langchain-tavily
+langgraph
 chainlit
 faiss-cpu
 pypdf
 python-dotenv
 requests
-tavily-python
