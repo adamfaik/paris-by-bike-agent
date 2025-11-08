@@ -2,6 +2,10 @@
 __pycache__/
 *.py[codz]
 *$py.class
+faiss_store/
+
+# Index files
+*.index
 
 # C extensions
 *.so

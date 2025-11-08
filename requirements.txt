@@ -1,0 +1,11 @@
+langchain
+langchain-community
+langchain-ollama
+langchain-groq
+langchain-openai
+chainlit
+faiss-cpu
+pypdf
+python-dotenv
+requests
+tavily-python
