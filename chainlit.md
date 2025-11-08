@@ -1,14 +1,38 @@
-# Welcome to Chainlit! 🚀🤖
+# 🚴‍♀️ Welcome to Paris by Bike! 🗼
 
-Hi there, Developer! 👋 We're excited to have you on board. Chainlit is a powerful tool designed to help you prototype, debug and share applications built on top of LLMs.
+Your AI-powered biking companion for exploring Paris on two wheels!
 
-## Useful Links 🔗
+## 🌟 What I Can Do For You
 
-- **Documentation:** Get started with our comprehensive [Chainlit Documentation](https://docs.chainlit.io) 📚
-- **Discord Community:** Join our friendly [Chainlit Discord](https://discord.gg/k73SQ3FyUh) to ask questions, share your projects, and connect with other developers! 💬
+I'm not just a chatbot - I'm your enthusiastic biking buddy who will:
 
-We can't wait to see what you create with Chainlit! Happy coding! 💻😊
+- 🗺️ **Plan Complete Routes** - Get Google Maps cycling directions with bike lanes
+- 🌤️ **Check Weather** - Hourly forecasts so you can avoid the rain
+- ⏱️ **Calculate Times & Distances** - Know exactly how far you can go
+- 🏛️ **Suggest Monuments** - Find scenic stops along your route
+- 📅 **Find Events** - Discover cycling meetups and activities happening now
+- 🚲 **Locate Bike Shops** - Rentals and repairs near you
 
-## Welcome screen
+## 💡 Try These to Get Started
 
-To modify the welcome screen, edit the `chainlit.md` file at the root of your project. If you do not want a welcome screen, just leave this file empty.
+Click on any starter prompt above, or ask me things like:
+
+- *"I want to ride for 1 hour from Paris 17e"*
+- *"Show me the route from Eiffel Tower to Montmartre"*
+- *"What's the weather? Should I bike today?"*
+- *"Find bike rental shops near the Louvre"*
+- *"Easy scenic route for beginners?"*
+
+## 🎯 Pro Tip
+
+The more specific you are, the better I can help! Tell me:
+- Where you're starting from
+- How much time you have
+- What you want to see
+- When you plan to ride
+
+Let's make your Paris biking adventure unforgettable! 🌟
+
+---
+
+*Powered by AI with real-time weather, web search, and curated local knowledge*

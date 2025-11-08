@@ -13,7 +13,7 @@ DATA_PATH = "data"
 VECTORSTORE_PATH = "faiss_store"
 
 # --- Use Local Ollama Models ---
-LLM = ChatOllama(model="llama3", temperature=0)
+LLM = ChatOllama(model="llama3.1", temperature=0)
 EMBED_MODEL = OllamaEmbeddings(model="nomic-embed-text")
 
 RAG_PROMPT_TEMPLATE = """
@@ -61,29 +61,57 @@ def get_vectorstore():
     print("Vector store created and saved to /faiss_store.")
     return vectorstore
 
-def format_docs(docs):
-    """Format documents for the prompt."""
-    return "\n\n".join(doc.page_content for doc in docs)
+def format_docs_with_sources(docs):
+    """Format documents for the prompt with source information."""
+    formatted = []
+    sources = set()
+    
+    for doc in docs:
+        # Extract filename from source path
+        source = doc.metadata.get('source', 'unknown')
+        filename = Path(source).name
+        sources.add(filename)
+        
+        formatted.append(f"[Source: {filename}]\n{doc.page_content}")
+    
+    context = "\n\n---\n\n".join(formatted)
+    source_list = ", ".join(sorted(sources))
+    
+    # Return both context and sources
+    return {
+        "context": context,
+        "sources": source_list
+    }
 
 def get_rag_chain():
-    """Initializes and returns the RAG chain using LCEL (LangChain Expression Language)."""
+    """Initializes and returns the RAG chain with source tracking."""
     vectorstore = get_vectorstore()
-    retriever = vectorstore.as_retriever()
+    retriever = vectorstore.as_retriever(search_kwargs={"k": 4})  # Retrieve top 4 chunks
 
     prompt = ChatPromptTemplate.from_template(RAG_PROMPT_TEMPLATE)
     
-    # Using LCEL (LangChain Expression Language) for LangChain 1.x
-    rag_chain = (
-        {
-            "context": retriever | format_docs,
-            "input": RunnablePassthrough()
-        }
-        | prompt
-        | LLM
-        | StrOutputParser()
-    )
-
-    return rag_chain
+    # Custom function to handle retrieval and format with sources
+    def retrieve_and_format(query):
+        docs = retriever.invoke(query)
+        result = format_docs_with_sources(docs)
+        return result["context"], result["sources"]
+    
+    # Modified RAG chain that returns both answer and sources
+    def rag_with_sources(query):
+        context, sources = retrieve_and_format(query)
+        
+        # Generate answer
+        messages = prompt.format_messages(context=context, input=query)
+        response = LLM.invoke(messages)
+        answer = response.content
+        
+        # Append sources to answer
+        if sources:
+            answer += f"\n\n📚 Sources used: {sources}"
+        
+        return answer
+    
+    return rag_with_sources
 
 # --- Main function to test this file directly ---
 if __name__ == "__main__":
@@ -92,6 +120,6 @@ if __name__ == "__main__":
     rag_chain = get_rag_chain()
 
     question = "What is a good scenic route for beginners?"
-    response = rag_chain.invoke(question)
+    response = rag_chain(question)
     print("\nQuestion:", question)
     print("Answer:", response)
