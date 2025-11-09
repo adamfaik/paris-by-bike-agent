@@ -2,7 +2,7 @@
 
 An intelligent, interactive assistant designed to help users explore Paris by bicycle – combining real-time information, contextual understanding, and document-based knowledge retrieval.
 
-![Paris by Bike Screenshot](docs/screenshot.png)
+![Paris by Bike Screenshot](docs/images/home_interface.png)
 
 ---
 
