@@ -1,14 +1,3 @@
----
-title: Paris by Bike
-emoji: 🚲
-colorFrom: indigo
-colorTo: gray
-sdk: docker
-pinned: false
----
-
-A Chainlit app for planning bike routes in Paris.
-
 # 🚴‍♀️ Paris by Bike
 
 An intelligent, interactive assistant designed to help users explore Paris by bicycle – combining real-time information, contextual understanding, and document-based knowledge retrieval.
